@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Measure {
+  uuid             String   @id @default(uuid())
+  created_at       DateTime @default(now())
+  measure_value    Float?
+  has_confirmed    Boolean  @default(false)
+  customer_code    String
+  measure_type     String
+  measure_datetime DateTime
+  image_extension  String
+  image_url        String?
+}

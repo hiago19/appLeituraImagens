@@ -10,7 +10,7 @@ O projeto está estruturado em vários arquivos principais:
 - **src/services/service.ts**: Contém a integração com a API do Google Gemini.
 - **src/routes/index.ts**: Define as rotas da API.
 - **src/utils/mimetypes.ts**: Utilitário para obter tipos MIME com base nas extensões de arquivos.
-- **prisma/schema.prisma**: Define o esquema do banco de dados.
+- **prisma/schema.prisma**: Define o esquema do banco de dados utilizando Prisma ORM.
 - **package.json**: Define as dependências e scripts do projeto.
 - **tsconfig.json**: Configurações do TypeScript.
 - **jest.config.js**: Configurações do Jest para testes.
@@ -25,6 +25,13 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - **Prisma**: ORM para interação com o banco de dados.
 - **Jest**: Para testes unitários.
 - **Docker**: Para containerização da aplicação.
+
+## Pré-requisitos
+
+Antes de rodar o projeto, certifique-se de ter instalado:
+
+- **Node.js** (versão recomendada: >= 14.x)
+- **Docker** e **Docker Compose** (para rodar a aplicação em containers)
 
 ## Rodando Localmente
 
@@ -51,6 +58,33 @@ Para executar o projeto localmente, siga estas etapas:
    ```bash
    GEMINI_API_KEY=<sua-chave-da-api>
    DATABASE_URL="mysql://root:root@db:3306/measures"
+   ```
+   - GEMINI_API_KEY: Pode ser obtida na [documentação da API do Google Gemini](https://developers.google.com/speed/docs/insights/v5/get-started).
+   - DATABASE_URL: Conexão com o banco de dados, usada no ambiente Docker.
+
+5. Inicie a aplicação:
+   
+   ```bash
+   npm run start
+   ```
+
+6. Inicie a aplicação usando Docker, isso irá iniciar a aplicação juntamente com o banco de dados:
+   
+   ```bash
+   docker-compose up --build
+   ```
+
+7. Acesse o contêiner da aplicação, isso permitirá executar os testes unitários ou acessar o banco de dados:
+   
+   ```bash
+   docker exec -it leituraimagens-app-1 /bin/sh # Acesso direto ao contêiner
+   docker exec -it leituraimagens-app-1 mysql -u root -p -h db -P 3306 measures # Acesso direto ao MySql
+   ```
+
+8. Execute os testes unitários:
+   
+   ```bash
+   npm test
    ```
 
 ## Funcionalidades

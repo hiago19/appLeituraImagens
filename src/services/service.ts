@@ -22,7 +22,7 @@ function fileToGenerativePart(imageBase64: string, mimeType: string) {
 
 // Função para extrair texto de uma imagem usando o modelo Gemini Pro Vision
 export async function getGemini(imageBase64: string, mimeType: string) {
-  const model = genAI.getGenerativeModel({model: "gemini-1.5-pro"});
+  const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
   const prompt = "Describe the water or gas meter measurement through the photo in just one line. Ex. Type: Water, Value: 1234.56 or if you can't identify what's in the image, say: Type: Null, Value: -1";
   const imageParts = [fileToGenerativePart(imageBase64, mimeType)];
 

@@ -19,61 +19,61 @@ function fileToGenerativePart(filePath: string, mimeType: string) {
   };
 }
 
-const imagePath = path.join(__dirname, '..', 'assets', 'medidor-agua.jpg');
+const imagePath = path.join(__dirname, '..', 'assets', 'medidor-gas.jpg');
 const imageBase64 = fileToGenerativePart(imagePath, 'image/jpeg').inlineData.data;
 
 describe('API Endpoints', () => {
   let measureUuid: string;
 
-  beforeEach(async () => {
-    // Limpa o banco de dados antes de cada teste
-    await prisma.measure.deleteMany({});
-  }, 20000); // Aumenta o tempo limite para 20 segundos
+  // Remova ou comente o bloco beforeEach
+  // beforeEach(async () => {
+  //   // Limpa o banco de dados antes de cada teste
+  //   await prisma.measure.deleteMany({});
+  // }, 20000); // Aumenta o tempo limite para 20 segundos
 
   afterAll(async () => {
     await prisma.$disconnect();
   });
+
+  jest.setTimeout(20000); // Define o tempo limite para 20 segundos
 
   test('should upload an image', async () => {
     const response = await request(app)
       .post('/upload')
       .send({
         image: imageBase64,
-        customer_code: '12345',
+        customer_code: '123456',
         measure_datetime: new Date().toISOString(),
-        measure_type: 'WATER',
+        measure_type: 'GAS',
         image_extension: 'jpg',
-      })
-      .expect(20000); // Aumenta o tempo limite para 20 segundos
+      });
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('image_url');
     expect(response.body).toHaveProperty('measure_value');
     expect(response.body).toHaveProperty('measure_uuid');
     measureUuid = response.body.measure_uuid;
-  }, 20000); // Aumenta o tempo limite para 20 segundos
+  });
 
   test('should confirm a measure', async () => {
     const response = await request(app)
       .patch('/confirm')
       .send({
         measure_uuid: measureUuid,
-        confirmed_value: 123.45,
-      })
-      .expect(20000); // Aumenta o tempo limite para 20 segundos
+        confirmed_value: 55,
+      });
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('success', true);
-  }, 20000); // Aumenta o tempo limite para 20 segundos
+  });
 
   test('should list measures', async () => {
     const response = await request(app)
-      .get('/12345/list')
-      .expect(20000); // Aumenta o tempo limite para 20 segundos
+      .get('/12345/list');
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('customer_code', '12345');
     expect(response.body).toHaveProperty('measures');
     expect(Array.isArray(response.body.measures)).toBe(true);
-  }, 20000); // Aumenta o tempo limite para 20 segundos
+  });
 });

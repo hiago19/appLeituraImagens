@@ -14,8 +14,8 @@ PATCH http://localhost:3001/confirm
 Content-Type: application/json
 
 {
-  "measure_uuid": "692a380d-1727-414b-a834-7d22a9190f8e",
-  "confirmed_value": 123.45
+  "measure_uuid": "27d28726-a376-43ea-9160-69303d0f99d4",
+  "confirmed_value": 68
 }
 
 ### Listar Medidas

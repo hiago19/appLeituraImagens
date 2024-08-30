@@ -15,6 +15,6 @@ model Measure {
   customer_code    String
   measure_type     String
   measure_datetime DateTime
-  image_extension  String
+  image_extension  String?
   image_url        String?
 }

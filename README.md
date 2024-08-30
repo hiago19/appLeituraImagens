@@ -59,7 +59,7 @@ Para executar o projeto localmente, siga estas etapas:
    GEMINI_API_KEY=<sua-chave-da-api>
    DATABASE_URL="mysql://root:root@db:3306/measures"
    ```
-   - GEMINI_API_KEY: Pode ser obtida na [documentação da API do Google Gemini](https://developers.google.com/speed/docs/insights/v5/get-started).
+   - GEMINI_API_KEY: Pode ser obtida na [documentação da API do Google Gemini](https://ai.google.dev/gemini-api/docs/api-key).
    - DATABASE_URL: Conexão com o banco de dados, usada no ambiente Docker.
 
 5. Inicie a aplicação:

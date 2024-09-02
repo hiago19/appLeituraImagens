@@ -25,12 +25,6 @@ const imageBase64 = fileToGenerativePart(imagePath, 'image/jpeg').inlineData.dat
 describe('API Endpoints', () => {
   let measureUuid: string;
 
-  // Remova ou comente o bloco beforeEach
-  // beforeEach(async () => {
-  //   // Limpa o banco de dados antes de cada teste
-  //   await prisma.measure.deleteMany({});
-  // }, 20000); // Aumenta o tempo limite para 20 segundos
-
   afterAll(async () => {
     await prisma.$disconnect();
   });

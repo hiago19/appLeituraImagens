@@ -62,26 +62,32 @@ Para executar o projeto localmente, siga estas etapas:
    - GEMINI_API_KEY: Pode ser obtida na [documentação da API do Google Gemini](https://ai.google.dev/gemini-api/docs/api-key).
    - DATABASE_URL: Conexão com o banco de dados, usada no ambiente Docker.
 
-5. Inicie a aplicação:
+5. Compile o código TypeScript:
+   
+   ```bash
+   npm run build
+   ```
+
+6. Inicie a aplicação:
    
    ```bash
    npm run start
    ```
 
-6. Inicie a aplicação usando Docker, isso irá iniciar a aplicação juntamente com o banco de dados:
+7. Inicie a aplicação usando Docker, isso irá iniciar a aplicação juntamente com o banco de dados:
    
    ```bash
    docker-compose up --build
    ```
 
-7. Acesse o contêiner da aplicação, isso permitirá executar os testes unitários ou acessar o banco de dados:
+8. Acesse o contêiner da aplicação, isso permitirá executar os testes unitários ou acessar o banco de dados:
    
    ```bash
    docker exec -it leituraimagens-app-1 /bin/sh # Acesso direto ao contêiner
    docker exec -it leituraimagens-app-1 mysql -u root -p -h db -P 3306 measures # Acesso direto ao MySql
    ```
 
-8. Execute os testes unitários:
+9. Execute os testes unitários:
    
    ```bash
    npm test

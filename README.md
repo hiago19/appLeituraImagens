@@ -71,7 +71,7 @@ Para executar o projeto localmente, siga estas etapas:
 6. Inicie a aplicação:
    
    ```bash
-   npm run start
+   npm run dev
    ```
 
 7. Inicie a aplicação usando Docker, isso irá iniciar a aplicação juntamente com o banco de dados:
